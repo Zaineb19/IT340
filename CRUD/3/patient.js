@@ -1,3 +1,5 @@
+const database = require('./database');
+
 class Patient {
     constructor(id, lastName, firstName, creationDate) {
       this.id = id;
