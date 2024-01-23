@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>TP GLRT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      :root {
+        --spacing-scale: 10px;
+        --border-width: 2px;
+        --border-color-header-footer: blue;
+        --border-color-section: orange;
+        --font-size-header: 40px; 
+        --font-size-section: 20px; 
+        --font-size-footer: 30px; 
+        --sidebar-width: 20%; 
+      }
+
+      body {
+        display: grid;
+        grid-template-columns: var(--sidebar-width) 1fr; 
+        grid-template-rows: 5rem 1fr 5rem; 
+        grid-template-areas:
+          "sidebar header"
+          "sidebar sections"
+          "sidebar footer";
+        height: 100vh; 
+        margin: 0;
+      }
+
+      .green-text {
+        color: green;
+      }
+
+      .border-common {
+        border-width: var(--border-width);
+        box-sizing: border-box;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        grid-area: sidebar;
+        background-color: lightgray; 
+        padding: var(--spacing-scale);
+      }
+
+      /* Header*/
+      .header {
+        grid-area: header;
+        height: 5rem;
+        padding: var(--spacing-scale);
+        border: var(--border-color-header-footer) solid;
+        color: green;
+        font-size: clamp(32px, var(--font-size-header), 80px);
+        animation: font-slide 2s linear infinite;
+      }
+
+      /* Section*/
+      .section-container {
+        grid-area: sections;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-scale);
+        padding: var(--spacing-scale);
+      }
+
+      .section {
+        border: var(--border-color-section) solid;
+        font-size: var(--font-size-section);
+        padding: calc(var(--spacing-scale) * 2);
+      }
+
+      /* Footer*/
+      .footer {
+        grid-area: footer;
+        padding: var(--spacing-scale);
+        border: var(--border-color-header-footer) solid;
+        color: green;
+        font-size: var(--font-size-footer);
+        text-align: right; 
+      }
+
+      @keyframes font-slide {
+        from {
+          text-align: start;
+        }
+        
+        50% {
+          text-align: center;
+        }
+        
+        to {
+          text-align: end;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        .section-container {
+          flex-direction: column;
+        }
+      }
+
+      @container (min-width: 800px) {
+        .section {
+          font-size: 16px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .header {
+          animation: none; 
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">Sidebar Content</div>
+    <div class="header green-text border-common">Ceci est un header</div>
+    <div class="section-container">
+      <div class="section border-common">Section 1</div>
+      <div class="section border-common">Section 2</div>
+    </div>
+    <div class="footer green-text border-common">Ceci est un footer</div>
+  </body>
+</html>
